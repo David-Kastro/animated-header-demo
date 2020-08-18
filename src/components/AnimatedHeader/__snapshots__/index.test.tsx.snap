@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<AnimatedHeader> renders the component 1`] = `
+<ScrollContextProvider>
+  <ForwardRef(SafeAreaView)
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <AnimatedHeader
+      title="Title"
+    />
+    <ScrollView
+      contentInsetAdjustmentBehavior="automatic"
+      style={
+        Object {
+          "backgroundColor": "#fff",
+          "flex": 1,
+          "paddingHorizontal": 10,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#000",
+            "fontSize": 28,
+            "fontWeight": "700",
+            "marginTop": 10,
+          }
+        }
+      >
+        Title
+      </Text>
+      <View
+        style={
+          Object {
+            "flex": 1,
+            "marginTop": 20,
+          }
+        }
+      />
+    </ScrollView>
+  </ForwardRef(SafeAreaView)>
+</ScrollContextProvider>
+`;
