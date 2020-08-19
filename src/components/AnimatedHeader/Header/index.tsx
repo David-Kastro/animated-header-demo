@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text, Animated, TextStyle, ViewStyle} from 'react-native';
-import useFadeAnimation from '../animationHooks/useFadeAnimation';
+import useFadeAnimation from '../hooks/useFadeAnimation';
 
 import styles from './styles';
 
