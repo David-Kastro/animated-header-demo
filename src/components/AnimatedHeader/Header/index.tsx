@@ -16,24 +16,41 @@ const Header = (props: IProps) => {
   const {titleShowing, opacity} = useScroller();
 
   const [titleFade] = useState(new Animated.Value(0));
+  const [titlePosY] = useState(new Animated.Value(-30));
 
   useEffect(() => {
-    !titleShowing &&
-      Animated.timing(titleFade, {
-        toValue: 0,
-        duration: 100,
-        useNativeDriver: true,
-        easing: Easing.sin,
-      }).start();
-
     titleShowing &&
-      Animated.timing(titleFade, {
-        toValue: 1,
-        duration: 100,
-        useNativeDriver: true,
-        easing: Easing.sin,
-      }).start();
-  }, [titleShowing, titleFade]);
+      Animated.parallel([
+        Animated.timing(titleFade, {
+          toValue: 1,
+          duration: 200,
+          useNativeDriver: true,
+          easing: Easing.sin,
+        }),
+        Animated.timing(titlePosY, {
+          toValue: 0,
+          duration: 200,
+          useNativeDriver: true,
+          easing: Easing.sin,
+        }),
+      ]).start();
+
+    !titleShowing &&
+      Animated.parallel([
+        Animated.timing(titleFade, {
+          toValue: 0,
+          duration: 100,
+          useNativeDriver: true,
+          easing: Easing.sin,
+        }),
+        Animated.timing(titlePosY, {
+          toValue: 5,
+          duration: 100,
+          useNativeDriver: true,
+          easing: Easing.sin,
+        }),
+      ]).start();
+  }, [titleShowing, titleFade, titlePosY]);
 
   return (
     <View
@@ -42,7 +59,8 @@ const Header = (props: IProps) => {
         shadowOpacity: opacity,
         elevation: opacity * 6,
       }}>
-      <Animated.View style={{opacity: titleFade}}>
+      <Animated.View
+        style={{opacity: titleFade, transform: [{translateY: titlePosY}]}}>
         <Text style={titleStyle || styles.headerTitle}>{title}</Text>
       </Animated.View>
     </View>
