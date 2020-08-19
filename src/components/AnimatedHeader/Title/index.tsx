@@ -1,6 +1,6 @@
 import React from 'react';
 import {Text, Animated, TextStyle} from 'react-native';
-import {useScroller} from '../ScrollContext';
+import useFadeAnimation from '../animationHooks/useFadeAnimation';
 
 import styles from './styles';
 
@@ -12,10 +12,10 @@ interface IProps {
 const Title = (props: IProps) => {
   const {title, style} = props;
 
-  const {opacity} = useScroller();
+  const {titleOpacity} = useFadeAnimation();
 
   return (
-    <Animated.View style={{opacity: 1 - opacity}}>
+    <Animated.View style={{opacity: titleOpacity}}>
       <Text style={style || styles.title}>{title}</Text>
     </Animated.View>
   );

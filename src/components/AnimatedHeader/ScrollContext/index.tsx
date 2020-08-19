@@ -6,7 +6,7 @@ interface IProps {
 }
 
 export interface IScrollContext {
-  opacity: number;
+  interpolation: number;
   maxOffset: number;
   offset: number;
   titleShowing: boolean;
@@ -17,7 +17,7 @@ const withinLimits = (val: number, min: number, max: number): number =>
   val > max ? max : val < min ? min : val;
 
 export const ScrollContext = createContext<IScrollContext>({
-  opacity: 0,
+  interpolation: 0,
   maxOffset: 0,
   offset: 0,
   titleShowing: false,
@@ -32,18 +32,18 @@ export const ScrollContextProvider = (props: IProps) => {
 
   const [offset, setOffset] = useState(0);
   const [titleShowing, setTitleShowing] = useState(false);
-  const [opacity, setOpacity] = useState(0);
+  const [interpolation, setInterpolation] = useState(0);
 
   const updateOffset = (val: number) => {
     setOffset(withinLimits(val, minOffset, maxOffset));
     setTitleShowing(val > maxOffset);
-    setOpacity(withinLimits((val * maxOffset) / 1000, 0, 1));
+    setInterpolation(withinLimits((val * maxOffset) / 1000, 0, 1));
   };
 
   return (
     <ScrollContext.Provider
       value={{
-        opacity,
+        interpolation,
         maxOffset,
         offset,
         titleShowing,

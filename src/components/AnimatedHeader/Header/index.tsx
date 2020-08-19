@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from 'react';
-import {View, Text, Animated, Easing, TextStyle, ViewStyle} from 'react-native';
-import {useScroller} from '../ScrollContext';
+import React from 'react';
+import {View, Text, Animated, TextStyle, ViewStyle} from 'react-native';
+import useFadeAnimation from '../animationHooks/useFadeAnimation';
 
 import styles from './styles';
 
@@ -13,54 +13,25 @@ interface IProps {
 const Header = (props: IProps) => {
   const {title, style, titleStyle} = props;
 
-  const {titleShowing, opacity} = useScroller();
-
-  const [titleFade] = useState(new Animated.Value(0));
-  const [titlePosY] = useState(new Animated.Value(-30));
-
-  useEffect(() => {
-    titleShowing &&
-      Animated.parallel([
-        Animated.timing(titleFade, {
-          toValue: 1,
-          duration: 200,
-          useNativeDriver: true,
-          easing: Easing.sin,
-        }),
-        Animated.timing(titlePosY, {
-          toValue: 0,
-          duration: 200,
-          useNativeDriver: true,
-          easing: Easing.sin,
-        }),
-      ]).start();
-
-    !titleShowing &&
-      Animated.parallel([
-        Animated.timing(titleFade, {
-          toValue: 0,
-          duration: 100,
-          useNativeDriver: true,
-          easing: Easing.sin,
-        }),
-        Animated.timing(titlePosY, {
-          toValue: 5,
-          duration: 100,
-          useNativeDriver: true,
-          easing: Easing.sin,
-        }),
-      ]).start();
-  }, [titleShowing, titleFade, titlePosY]);
+  const {
+    headerTitleOpacity,
+    headerTitlePosY,
+    headerElevation,
+    headerShadowOpacity,
+  } = useFadeAnimation();
 
   return (
     <View
       style={{
         ...(style || styles.header),
-        shadowOpacity: opacity,
-        elevation: opacity * 6,
+        shadowOpacity: headerShadowOpacity,
+        elevation: headerElevation,
       }}>
       <Animated.View
-        style={{opacity: titleFade, transform: [{translateY: titlePosY}]}}>
+        style={{
+          opacity: headerTitleOpacity,
+          transform: [{translateY: headerTitlePosY}],
+        }}>
         <Text style={titleStyle || styles.headerTitle}>{title}</Text>
       </Animated.View>
     </View>
