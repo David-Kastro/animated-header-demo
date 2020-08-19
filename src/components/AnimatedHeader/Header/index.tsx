@@ -18,7 +18,7 @@ const Header = (props: IProps) => {
   const [titleFade] = useState(new Animated.Value(0));
 
   useEffect(() => {
-    titleShowing === false &&
+    !titleShowing &&
       Animated.timing(titleFade, {
         toValue: 0,
         duration: 100,
@@ -26,14 +26,14 @@ const Header = (props: IProps) => {
         easing: Easing.sin,
       }).start();
 
-    titleShowing === true &&
+    titleShowing &&
       Animated.timing(titleFade, {
         toValue: 1,
         duration: 100,
         useNativeDriver: true,
         easing: Easing.sin,
       }).start();
-  });
+  }, [titleShowing, titleFade]);
 
   return (
     <View
