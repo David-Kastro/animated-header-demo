@@ -2,7 +2,7 @@ import React from 'react';
 import {Text, Animated, TextStyle} from 'react-native';
 import useFadeAnimation from '../hooks/useFadeAnimation';
 
-import styles from './styles';
+import styles from '../styles';
 
 interface IProps {
   title: string;
