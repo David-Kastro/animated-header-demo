@@ -43,11 +43,11 @@ export const ScrollContextProvider = (props: IProps) => {
   return (
     <ScrollContext.Provider
       value={{
-        opacity: opacity,
-        maxOffset: maxOffset,
-        offset: offset,
-        titleShowing: titleShowing,
-        updateOffset: updateOffset,
+        opacity,
+        maxOffset,
+        offset,
+        titleShowing,
+        updateOffset,
       }}>
       {props.children}
     </ScrollContext.Provider>

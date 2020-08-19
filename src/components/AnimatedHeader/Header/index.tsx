@@ -2,20 +2,16 @@ import React, {useEffect, useState} from 'react';
 import {View, Text, Animated, Easing, TextStyle, ViewStyle} from 'react-native';
 import {useScroller} from '../ScrollContext';
 
-import styles from '../styles';
+import styles from './styles';
 
 interface IProps {
   title: string;
-  options?: IOptions;
+  style?: ViewStyle;
+  titleStyle?: TextStyle;
 }
 
-interface IOptions {
-  headerStyle?: ViewStyle;
-  headerTitleStyle?: TextStyle;
-}
-
-const AnimatedHeader = (props: IProps) => {
-  const {title, options} = props;
+const Header = (props: IProps) => {
+  const {title, style, titleStyle} = props;
 
   const {titleShowing, opacity} = useScroller();
 
@@ -42,17 +38,15 @@ const AnimatedHeader = (props: IProps) => {
   return (
     <View
       style={{
-        ...(options?.headerStyle || styles.header),
+        ...(style || styles.header),
         shadowOpacity: opacity,
         elevation: opacity * 6,
       }}>
       <Animated.View style={{opacity: titleFade}}>
-        <Text style={options?.headerTitleStyle || styles.headerTitle}>
-          {title}
-        </Text>
+        <Text style={titleStyle || styles.headerTitle}>{title}</Text>
       </Animated.View>
     </View>
   );
 };
 
-export default AnimatedHeader;
+export default Header;

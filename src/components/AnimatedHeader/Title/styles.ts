@@ -1,8 +1,10 @@
 import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
-  text: {
-    fontSize: 18,
+  title: {
+    marginTop: 10,
+    fontSize: 28,
+    fontWeight: '700',
     color: '#000',
   },
 });
