@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, StatusBar} from 'react-native';
+import { Text, StatusBar } from 'react-native';
 
 import AnimatedHeader from '../../components/AnimatedHeader';
 

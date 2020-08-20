@@ -1,5 +1,5 @@
-import React, {useState, createContext, useContext} from 'react';
-import {ScrollView as ScrollViewNative, ScrollViewProps} from 'react-native';
+import React, { useState, createContext, useContext } from 'react';
+import { ScrollView as ScrollViewNative, ScrollViewProps } from 'react-native';
 
 interface IProps {
   children: React.ReactNode;
@@ -55,12 +55,12 @@ export const ScrollContextProvider = (props: IProps) => {
 };
 
 export const ScrollView = (props: IProps & ScrollViewProps) => {
-  const {updateOffset} = useScroller();
+  const { updateOffset } = useScroller();
 
   return (
     <ScrollViewNative
       {...props}
-      onScroll={({nativeEvent}) => {
+      onScroll={({ nativeEvent }) => {
         updateOffset(nativeEvent.contentOffset.y);
       }}
       scrollEventThrottle={200}>

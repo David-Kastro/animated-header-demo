@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, Animated, TextStyle} from 'react-native';
+import { Text, Animated, TextStyle } from 'react-native';
 import useFadeAnimation from '../hooks/useFadeAnimation';
 
 import styles from '../styles';
@@ -10,12 +10,12 @@ interface IProps {
 }
 
 const Title = (props: IProps) => {
-  const {title, style} = props;
+  const { title, style } = props;
 
-  const {titleOpacity} = useFadeAnimation();
+  const { titleOpacity } = useFadeAnimation();
 
   return (
-    <Animated.View style={{opacity: titleOpacity}}>
+    <Animated.View style={{ opacity: titleOpacity }}>
       <Text style={style || styles.title}>{title}</Text>
     </Animated.View>
   );

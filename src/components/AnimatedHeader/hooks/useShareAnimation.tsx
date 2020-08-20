@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Animated, Easing } from 'react-native';
 import { useScroller } from '../ScrollContext';
 
-export interface IFadeAnimation {
+export interface IShareAnimation {
   headerTitleOpacity: Animated.Value;
   headerTitlePosY: Animated.Value;
   headerShadowOpacity: number;
@@ -10,7 +10,7 @@ export interface IFadeAnimation {
   titleOpacity: number;
 }
 
-export default function useFadeAnimation(): IFadeAnimation {
+export default function useShareAnimation(): IShareAnimation {
   const { titleShowing, interpolation } = useScroller();
 
   const [headerTitleOpacity] = useState<Animated.Value>(new Animated.Value(0));

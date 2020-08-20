@@ -1,7 +1,7 @@
 import React from 'react';
-import {View, SafeAreaView} from 'react-native';
-import {ScrollContextProvider, ScrollView} from './ScrollContext';
-import {IOptions, Animation} from './types';
+import { View, SafeAreaView } from 'react-native';
+import { ScrollContextProvider, ScrollView } from './ScrollContext';
+import { IOptions, Animation } from './types';
 
 //Fade
 import FadeHeader from './Fade/Header';
@@ -23,7 +23,7 @@ interface IProps {
 }
 
 const AnimatedHeader = (props: IProps) => {
-  const {title, options, children, animation} = props;
+  const { title, options, children, animation } = props;
   const animationType: Animation = animation || 'Fade';
 
   function Header() {
